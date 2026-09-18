@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AUI Lost & Found | Achievers University</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<style>
+:root{--aui-blue:#0d1b4a;--aui-gold:#fca311;--light:#f8f9fc;--soft-blue:#eaf2ff;--soft-gold:#fff3d6}
+*{scroll-behavior:smooth}
+body{font-family:'Segoe UI',sans-serif;background:radial-gradient(circle at top,#f5f8ff 0%,#edf3ff 35%,var(--light) 100%);color:#12203d;overflow-x:hidden}
+body::before,body::after{content:"";position:fixed;inset:auto;pointer-events:none;filter:blur(70px);z-index:0;border-radius:50%;opacity:.45}
+body::before{width:220px;height:220px;background:rgba(252,163,17,.28);top:10%;left:8%;animation:float 9s ease-in-out infinite}
+body::after{width:260px;height:260px;background:rgba(13,27,74,.12);bottom:8%;right:10%;animation:float 12s ease-in-out infinite reverse}
+.navbar{background:rgba(13,27,74,.96)!important;backdrop-filter:blur(10px);box-shadow:0 12px 30px rgba(13,27,74,.12)}
+.btn-gold{background:var(--aui-gold);color:var(--aui-blue);font-weight:700;border:none;box-shadow:0 10px 22px rgba(252,163,17,.25);transition:transform .25s ease, box-shadow .25s ease}
+.btn-gold:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 16px 30px rgba(252,163,17,.35)}
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--aui-blue) 0%,#173d8f 45%,#214ca9 100%);color:white;padding:60px 0 40px}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.08);animation:float 8s ease-in-out infinite}
+.hero::before{width:220px;height:220px;right:-30px;top:30px}
+.hero::after{width:180px;height:180px;left:8%;bottom:-40px;animation-delay:1.5s}
+.hero h1,.hero p,.hero .row{position:relative;z-index:1}
+.hero .display-6{animation:slideUp .8s ease both}
+.hero p.lead{animation:slideUp .9s ease .15s both}
+.hero .stat-card{animation:riseIn .8s ease .2s both}
+.floating-badge{position:absolute;display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(4px);color:#fff;font-size:12px;letter-spacing:.08em;text-transform:uppercase;animation:drift 7s ease-in-out infinite}
+.floating-badge.b1{top:18%;left:12%}.floating-badge.b2{top:20%;right:12%;animation-delay:1s}.floating-badge.b3{bottom:18%;left:18%;animation-delay:2s}
+.card-item{border:none;border-radius:16px;box-shadow:0 6px 18px rgba(13,27,74,0.08);transition:transform .35s ease, box-shadow .35s ease, opacity .5s ease; height:100%;opacity:0;transform:translateY(26px) scale(.98)}
+.card-item.visible{opacity:1;transform:translateY(0) scale(1)}
+.card-item:hover{transform:translateY(-8px) rotateX(2deg);box-shadow:0 18px 32px rgba(13,27,74,.14)}
+.badge-lost{background:#ffe0e0;color:#c0392b}.badge-found{background:#d4edda;color:#155724}
+.stat-card{background:white;border-radius:12px;padding:20px;text-align:center;box-shadow:0 8px 22px rgba(13,27,74,.08);animation:riseIn .7s ease both;transition:transform .25s ease}
+.stat-card:hover{transform:translateY(-4px)}
+.item-img{height:180px;object-fit:cover;width:100%;background:linear-gradient(135deg,#eef4ff,#eaf7ff);display:flex;align-items:center;justify-content:center;font-size:48px;position:relative;overflow:hidden}
+.item-img::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.5),transparent);}
+.item-img::after{content:"";position:absolute;width:40px;height:40px;border-radius:50%;background:rgba(13,27,74,.05);right:18px;bottom:18px;animation:pulse 3s ease-in-out infinite}
+.filter-btn{transition:all .25s ease;position:relative;overflow:hidden}
+.filter-btn:hover,.filter-btn.active{background:var(--aui-blue);color:white;border-color:var(--aui-blue);transform:translateY(-1px)}
+.form-control,.form-select{border-radius:12px;border:1px solid rgba(13,27,74,.12);transition:border-color .2s ease, box-shadow .2s ease}
+.form-control:focus,.form-select:focus{border-color:rgba(13,27,74,.5);box-shadow:0 0 0 .2rem rgba(13,27,74,.12)}
+.modal-content{border:none;border-radius:22px;box-shadow:0 24px 70px rgba(13,27,74,.2)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes riseIn{0%{opacity:0;transform:translateY(18px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes drift{0%,100%{transform:translateY(0) translateX(0)}50%{transform:translateY(-12px) translateX(6px)}}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.35);opacity:1}}
+@media (max-width: 576px){.hero{padding-top:40px}.stat-card{padding:16px}.floating-badge{display:none}}
+</style>
+</head>
+<body>
+<nav class="navbar navbar-dark sticky-top">
+<div class="container">
+<a class="navbar-brand fw-bold" href="#"><i class="bi bi-search me-2 text-warning"></i> AUI Lost & Found</a>
+<div><a href="login.html" class="btn btn-outline-light btn-sm"><i class="bi bi-person"></i> Login</a>
+<button class="btn btn-warning btn-sm ms-2 fw-bold" data-bs-toggle="modal" data-bs-target="#reportModal"><i class="bi bi-plus-lg"></i> Report Item</button></div>
+</div>
+</nav>
+<section class="hero">
+<div class="floating-badge b1"><i class="bi bi-shield-check"></i> Security Desk</div>
+<div class="floating-badge b2"><i class="bi bi-flag"></i> Student Support</div>
+<div class="floating-badge b3"><i class="bi bi-search-heart"></i> Quick Match</div>
+<div class="container text-center">
+<h1 class="fw-bold display-6">Lost Something at <span style="color:#fca311">AUI?</span> Let's Find It</h1>
+<p class="lead opacity-75">Official Lost & Found portal for Achievers University</p>
+<div class="row g-3 mt-4 justify-content-center">
+<div class="col-4 col-md-3"><div class="stat-card"><h4 class="fw-bold mb-0" id="totalCount">0</h4><small>Total</small></div></div>
+<div class="col-4 col-md-3"><div class="stat-card"><h4 class="fw-bold mb-0 text-success" id="foundCount">0</h4><small>Found</small></div></div>
+<div class="col-4 col-md-3"><div class="stat-card"><h4 class="fw-bold mb-0 text-danger" id="lostCount">0</h4><small>Lost</small></div></div>
+</div></div></section>
+<div class="container my-4">
+<div class="row g-2"><div class="col-md-5"><div class="input-group"><span class="input-group-text bg-white"><i class="bi bi-search"></i></span><input type="text" id="searchInput" class="form-control" placeholder="Search e.g. ID card, bottle..."></div></div>
+<div class="col-md-4"><select id="categoryFilter" class="form-select"><option value="all">All Categories</option><option>ID Card</option><option>Electronics</option><option>Books</option><option>Clothing</option><option>Keys</option><option>Water Bottle</option><option>Others</option></select></div>
+<div class="col-md-3 d-flex gap-2"><button class="btn btn-outline-dark filter-btn active w-100" data-filter="all">All</button><button class="btn btn-outline-dark filter-btn w-100" data-filter="lost">Lost</button><button class="btn btn-outline-dark filter-btn w-100" data-filter="found">Found</button></div>
+</div></div>
+<div class="container pb-5"><div class="row g-4" id="itemsGrid"></div><div id="noResult" class="text-center py-5 d-none"><i class="bi bi-inbox fs-1 text-muted"></i><p class="text-muted mt-2">No items found.</p></div></div>
+<div class="modal fade" id="reportModal" tabindex="-1"><div class="modal-dialog"><div class="modal-content rounded-4">
+<div class="modal-header"><h5 class="fw-bold">Report an Item</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+<div class="modal-body"><form id="reportForm">
+<div class="mb-3"><label>Type</label><select class="form-select" id="itemType"><option value="lost">I Lost an Item</option><option value="found">I Found an Item</option></select></div>
+<div class="mb-3"><label>Item Name</label><input type="text" id="itemName" class="form-control" placeholder="e.g. ID Card"></div>
+<div class="row g-2"><div class="col-6 mb-3"><label>Category</label><select id="itemCategory" class="form-select"><option>ID Card</option><option>Electronics</option><option>Books</option><option>Clothing</option><option>Keys</option><option>Water Bottle</option><option>Others</option></select></div><div class="col-6 mb-3"><label>Location</label><input type="text" id="itemLocation" class="form-control" placeholder="Library, COLNAS"></div></div>
+<div class="mb-3"><label>Description</label><textarea id="itemDesc" class="form-control" rows="2"></textarea></div>
+<div class="mb-3"><label>Contact</label><input type="text" id="itemContact" class="form-control" placeholder="080..."></div>
+<div class="mb-3"><label>Date</label><input type="date" id="itemDate" class="form-control"></div>
+<button type="submit" class="btn btn-dark w-100 fw-bold">Submit Report</button>
+</form></div></div></div></div>
+<footer class="text-center py-4 bg-white border-top"><small class="text-muted">© 2025 AUI Lost & Found | Security Unit Block A</small></footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+let items = JSON.parse(localStorage.getItem('aui_items')) || [
+{id:1,type:'lost',name:'Matric ID Card - ETOF O.C',category:'ID Card',location:'COLMAS Hall',date:'2025-09-20',desc:'Blue lanyard, 100L CSC',contact:'080...',icon:'🪪'},
+{id:2,type:'found',name:'Black Power Bank 20000mAh',category:'Electronics',location:'Library',date:'2025-09-22',desc:'Oraimo brand',contact:'Security',icon:'🔋'},
+{id:3,type:'lost',name:'CSC 101 Textbook',category:'Books',location:'LT1',date:'2025-09-18',desc:'Intro to Computing',contact:'070...',icon:'📚'},
+{id:4,type:'found',name:'Silver Watch',category:'Others',location:'Chapel',date:'2025-09-21',desc:'Silver fashion watch',contact:'08012345678',icon:'⌚'},
+{id:5,type:'lost',name:'Room 12 Keys',category:'Keys',location:'Hostel',date:'2025-09-23',desc:'Red tag',contact:'090...',icon:'🔑'},
+{id:6,type:'found',name:'Blue Water Bottle',category:'Water Bottle',location:'Sports Complex',date:'2025-09-22',desc:'With AUI sticker',contact:'Security',icon:'🧴'}
+];
+const grid=document.getElementById('itemsGrid');const searchInput=document.getElementById('searchInput');const categoryFilter=document.getElementById('categoryFilter');let currentFilter='all';
+function revealCards(){const cards=document.querySelectorAll('.card-item');cards.forEach((card,index)=>{card.classList.remove('visible');setTimeout(()=>card.classList.add('visible'),index*90);});}
+function render(){const s=searchInput.value.toLowerCase();const c=categoryFilter.value;let f=items.filter(i=>{return (i.name.toLowerCase().includes(s)||i.location.toLowerCase().includes(s))&&(c==='all'||i.category===c)&&(currentFilter==='all'||i.type===currentFilter)});grid.innerHTML='';document.getElementById('noResult').classList.toggle('d-none',f.length!==0);f.forEach(item=>{grid.innerHTML+=`<div class="col-12 col-sm-6 col-lg-4"><div class="card card-item"><div class="item-img">${item.icon}</div><div class="card-body"><div class="d-flex justify-content-between mb-2"><span class="badge ${item.type==='lost'?'badge-lost':'badge-found'} text-uppercase">${item.type}</span><small class="text-muted"><i class="bi bi-geo-alt"></i> ${item.location}</small></div><h6 class="fw-bold">${item.name}</h6><p class="small text-muted mb-2">${item.desc}</p><div class="d-flex justify-content-between"><small class="text-muted">${item.date}</small><button class="btn btn-sm btn-dark" onclick="claimItem('${item.contact}','${item.name}')">Contact</button></div></div></div></div>`});revealCards();document.getElementById('totalCount').innerText=items.length;document.getElementById('foundCount').innerText=items.filter(i=>i.type==='found').length;document.getElementById('lostCount').innerText=items.filter(i=>i.type==='lost').length;}
+const revealObserver=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');}});},{threshold:0.12});document.querySelectorAll('.card-item').forEach(el=>revealObserver.observe(el));
+function claimItem(contact,name){alert(`Contact for ${name}:\n${contact}\n\nGo to Security Unit Block A with proof.`)}
+document.querySelectorAll('.filter-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');currentFilter=btn.dataset.filter;render();})});
+searchInput.addEventListener('input',render);categoryFilter.addEventListener('change',render);
+document.getElementById('reportForm').addEventListener('submit',(e)=>{e.preventDefault();const type=document.getElementById('itemType').value;const name=document.getElementById('itemName').value.trim();const category=document.getElementById('itemCategory').value;const location=document.getElementById('itemLocation').value.trim();const desc=document.getElementById('itemDesc').value.trim();const contact=document.getElementById('itemContact').value.trim();const date=document.getElementById('itemDate').value;if(!type||!name||name.length<2||name.length>80||!category||!location||location.length<2||location.length>80||desc.length>250||!contact||contact.length<3||contact.length>80||!date){alert('Please enter valid information in all required fields.');return;}const newItem={id:Date.now(),type,name,category,location,desc,contact,date,icon:'📦'};items.unshift(newItem);localStorage.setItem('aui_items',JSON.stringify(items));render();e.target.reset();bootstrap.Modal.getInstance(document.getElementById('reportModal')).hide();alert('Reported!');});
+document.getElementById('itemDate').valueAsDate=new Date();render();
+</script>
+</body></html>
